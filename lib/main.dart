@@ -28,19 +28,24 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.end,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text('Text test'),
-          ElevatedButton(
-              onPressed: () => {},
-              child: Text('btn to click'),
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.amber)),
           Container(
+            padding: EdgeInsets.all(10.0),
             color: Colors.cyan,
-            padding: EdgeInsets.all(12),
-            child: Text('Hi everyone'),
+            child: Text('Children'),
+          ),
+          Container(
+            padding: EdgeInsets.all(20.0),
+            color: Colors.amber,
+            child: Text('Lift up'),
+          ),
+          Container(
+            padding: EdgeInsets.all(30.0),
+            color: Colors.red,
+            child: Text('Your voice'),
           )
         ],
       ),
