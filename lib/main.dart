@@ -28,26 +28,37 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.all(10.0),
-            color: Colors.cyan,
-            child: Text('Children'),
-          ),
-          Container(
-            padding: EdgeInsets.all(20.0),
-            color: Colors.amber,
-            child: Text('Lift up'),
-          ),
-          Container(
-            padding: EdgeInsets.all(30.0),
-            color: Colors.red,
-            child: Text('Your voice'),
-          )
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    padding: EdgeInsets.all(10.0),
+                    color: Colors.cyan,
+                    child: Text('Children'),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(20.0),
+                  color: Colors.amber,
+                  child: Text('Lift up'),
+                ),
+                Container(
+                  padding: EdgeInsets.all(30.0),
+                  color: Colors.red,
+                  child: Text('Your voice'),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => {},
