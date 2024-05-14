@@ -28,12 +28,21 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text(
-          'Tell me your name',
-          style: TextStyle(
-              fontSize: 20.0, letterSpacing: 2.0, fontFamily: 'IndieFlower'),
-        ),
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: <Widget>[
+          Text('Text test'),
+          ElevatedButton(
+              onPressed: () => {},
+              child: Text('btn to click'),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.amber)),
+          Container(
+            color: Colors.cyan,
+            padding: EdgeInsets.all(12),
+            child: Text('Hi everyone'),
+          )
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => {},
