@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 void main() => runApp(MaterialApp(
       theme: ThemeData(
@@ -29,33 +31,36 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        padding: const EdgeInsets.fromLTRB(0, 23, 0, 0),
+        child: Row(
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    padding: EdgeInsets.all(10.0),
-                    color: Colors.cyan,
-                    child: Text('Children'),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(20.0),
-                  color: Colors.amber,
-                  child: Text('Lift up'),
-                ),
-                Container(
-                  padding: EdgeInsets.all(30.0),
-                  color: Colors.red,
-                  child: Text('Your voice'),
-                ),
-              ],
+            Expanded(
+              child: Image.asset('assets/beer_tap.jpg'),
+              flex: 3,
+            ),
+            Expanded(
+              flex: 2,
+              child: Container(
+                padding: EdgeInsets.all(20.0),
+                color: Colors.purple,
+                child: Text('1'),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                padding: EdgeInsets.all(20.0),
+                color: Colors.pinkAccent,
+                child: Text('2'),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                padding: EdgeInsets.all(20.0),
+                color: Colors.deepPurple,
+                child: Text('3'),
+              ),
             )
           ],
         ),
