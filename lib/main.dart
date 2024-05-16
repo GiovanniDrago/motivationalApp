@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:motivational_app/pages/home.dart';
+import 'package:motivational_app/pages/interactions/answer.dart';
 
 void main() => runApp(MaterialApp(
       theme: ThemeData(
@@ -19,57 +21,19 @@ void main() => runApp(MaterialApp(
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 148, 87, 87)),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 136, 14, 79)),
         useMaterial3: true,
       ),
-      home: Home(),
+      darkTheme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+        seedColor: const Color.fromARGB(255, 136, 14, 79),
+        brightness: Brightness.dark,
+        background: const Color.fromARGB(255, 101, 5, 56),
+      )),
+      themeMode: ThemeMode.dark,
+      routes: {
+        '/': (context) => Home(),
+        '/answer': (context) => Answer(userName: 'test')
+      },
     ));
-
-class Home extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 23, 0, 0),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: Image.asset('assets/beer_tap.jpg'),
-              flex: 3,
-            ),
-            Expanded(
-              flex: 2,
-              child: Container(
-                padding: EdgeInsets.all(20.0),
-                color: Colors.purple,
-                child: Text('1'),
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Container(
-                padding: EdgeInsets.all(20.0),
-                color: Colors.pinkAccent,
-                child: Text('2'),
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Container(
-                padding: EdgeInsets.all(20.0),
-                color: Colors.deepPurple,
-                child: Text('3'),
-              ),
-            )
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => {},
-        child: Text('+'),
-        backgroundColor: Colors.green,
-      ),
-    );
-  }
-}
