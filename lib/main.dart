@@ -32,8 +32,5 @@ void main() => runApp(MaterialApp(
         background: const Color.fromARGB(255, 101, 5, 56),
       )),
       themeMode: ThemeMode.dark,
-      routes: {
-        '/': (context) => Home(),
-        '/answer': (context) => Answer(userName: 'test')
-      },
+      routes: {'/': (context) => Home(), '/answer': (context) => Answer()},
     ));

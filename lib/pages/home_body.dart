@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:motivational_app/pages/interactions/answer_form.dart';
 import 'package:motivational_app/pages/interactions/question.dart';
 
 class HomeBody extends StatefulWidget {
@@ -9,6 +10,7 @@ class HomeBody extends StatefulWidget {
 
 class _HomeBodyState extends State<HomeBody> {
   String userName = '';
+  final TextEditingController _name = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +19,7 @@ class _HomeBodyState extends State<HomeBody> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Question(),
-          OutlinedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/answer');
-              },
-              child: const Text('Enter'))
+          AnswerForm(name: _name),
         ],
       ),
     );

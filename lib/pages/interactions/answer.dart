@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Answer extends StatelessWidget {
-  final String userName;
-  const Answer({super.key, required this.userName});
-
   @override
   Widget build(BuildContext context) {
+    final userName = ModalRoute.of(context)?.settings.arguments as String;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
