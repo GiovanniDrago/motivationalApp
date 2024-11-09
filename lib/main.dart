@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:motivational_app/pages/home.dart';
 import 'package:motivational_app/pages/interactions/answer.dart';
 
@@ -32,5 +30,8 @@ void main() => runApp(MaterialApp(
         background: const Color.fromARGB(255, 101, 5, 56),
       )),
       themeMode: ThemeMode.dark,
-      routes: {'/': (context) => Home(), '/answer': (context) => Answer()},
+      routes: {
+        '/': (context) => const Home(),
+        '/answer': (context) => Answer()
+      },
     ));
