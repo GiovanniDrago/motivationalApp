@@ -4,6 +4,8 @@ import 'package:motivational_app/pages/interactions/answer_form.dart';
 import 'package:motivational_app/pages/interactions/question.dart';
 
 class HomeBody extends StatefulWidget {
+  const HomeBody({super.key});
+
   @override
   State<HomeBody> createState() => _HomeBodyState();
 }

@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'retry_button.dart';
 
 class Answer extends StatelessWidget {
   const Answer({super.key});
@@ -15,27 +16,7 @@ class Answer extends StatelessWidget {
             'Fuck off $userName',
             style: const TextStyle(wordSpacing: 2.0),
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-            child: OverflowBar(
-              spacing: 10,
-              overflowSpacing: 20,
-              alignment: MainAxisAlignment.center,
-              overflowAlignment: OverflowBarAlignment.center,
-              children: <Widget>[
-                OutlinedButton.icon(
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/');
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back_ios_new_rounded,
-                    size: 16,
-                  ),
-                  label: const Text('Retry'),
-                ),
-              ],
-            ),
-          )
+          RetryButton()
         ]),
       ),
     );

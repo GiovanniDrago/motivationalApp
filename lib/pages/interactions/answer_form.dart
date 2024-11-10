@@ -42,7 +42,8 @@ class AnswerForm extends StatelessWidget {
       Navigator.pushReplacementNamed(context, '/answer', arguments: value);
     } else {
       showDialog<String>(
-          context: context, builder: (BuildContext context) => DialogNoName());
+          context: context,
+          builder: (BuildContext context) => const DialogNoName());
     }
   }
 }

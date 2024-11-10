@@ -32,6 +32,6 @@ void main() => runApp(MaterialApp(
       themeMode: ThemeMode.dark,
       routes: {
         '/': (context) => const Home(),
-        '/answer': (context) => Answer()
+        '/answer': (context) => const Answer()
       },
     ));
