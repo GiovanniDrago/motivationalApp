@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class DialogNoName extends StatelessWidget {
+  const DialogNoName({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(

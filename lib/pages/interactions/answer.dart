@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'retry_button.dart';
+
 class Answer extends StatelessWidget {
+  const Answer({super.key});
+
   @override
   Widget build(BuildContext context) {
     final userName = ModalRoute.of(context)?.settings.arguments as String;
@@ -12,6 +16,7 @@ class Answer extends StatelessWidget {
             'Fuck off $userName',
             style: const TextStyle(wordSpacing: 2.0),
           ),
+          RetryButton()
         ]),
       ),
     );
