@@ -1,0 +1,24 @@
+{
+  "appTitle": "Motivational App",
+  "homePrompt": "Tell me your name",
+  "nameFieldLabel": "Name",
+  "nameFieldHint": "Type your name",
+  "enterButton": "Enter",
+  "missingNameTitle": "Idiot!",
+  "missingNameMessage": "Enter your f*ucking name",
+  "dialogOk": "Ok",
+  "retryButton": "Retry",
+  "languageMenuLabel": "Language",
+  "languageEnglish": "English",
+  "languageItalian": "Italian",
+  "answerMessage": "Fuck off {userName}",
+  "@answerMessage": {
+    "description": "Blunt motivational message shown after the user enters a name.",
+    "placeholders": {
+      "userName": {
+        "type": "String",
+        "example": "Taylor"
+      }
+    }
+  }
+}

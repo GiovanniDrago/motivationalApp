@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:motivational_app/l10n/app_localizations.dart';
 
 class RetryButton extends StatefulWidget {
   const RetryButton({super.key});
@@ -9,11 +12,16 @@ class RetryButton extends StatefulWidget {
 
 class _RetryButtonState extends State<RetryButton> {
   double _opacity = 0.0;
+  Timer? _fadeInTimer;
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 1000), () {
+    _fadeInTimer = Timer(const Duration(milliseconds: 1000), () {
+      if (!mounted) {
+        return;
+      }
+
       setState(() {
         _opacity = 1;
       });
@@ -21,31 +29,25 @@ class _RetryButtonState extends State<RetryButton> {
   }
 
   @override
+  void dispose() {
+    _fadeInTimer?.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Visibility(
-      visible: true,
-      child: AnimatedOpacity(
-        opacity: _opacity,
-        duration: const Duration(milliseconds: 1200),
+    final l10n = AppLocalizations.of(context)!;
+
+    return AnimatedOpacity(
+      opacity: _opacity,
+      duration: const Duration(milliseconds: 1200),
+      child: Center(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-          child: OverflowBar(
-            spacing: 10,
-            overflowSpacing: 20,
-            alignment: MainAxisAlignment.center,
-            overflowAlignment: OverflowBarAlignment.center,
-            children: <Widget>[
-              OutlinedButton.icon(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/');
-                },
-                icon: const Icon(
-                  Icons.arrow_back_ios_new_rounded,
-                  size: 16,
-                ),
-                label: const Text('Retry'),
-              ),
-            ],
+          padding: const EdgeInsets.only(top: 10),
+          child: OutlinedButton.icon(
+            onPressed: () => Navigator.of(context).pop(),
+            icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 16),
+            label: Text(l10n.retryButton),
           ),
         ),
       ),

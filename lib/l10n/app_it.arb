@@ -1,0 +1,15 @@
+{
+  "appTitle": "App motivazionale",
+  "homePrompt": "Dimmi il tuo nome",
+  "nameFieldLabel": "Nome",
+  "nameFieldHint": "Scrivi il tuo nome",
+  "enterButton": "Invia",
+  "missingNameTitle": "Idiota!",
+  "missingNameMessage": "Inserisci il tuo cazzo di nome",
+  "dialogOk": "Ok",
+  "retryButton": "Riprova",
+  "languageMenuLabel": "Lingua",
+  "languageEnglish": "Inglese",
+  "languageItalian": "Italiano",
+  "answerMessage": "Vaffanculo {userName}"
+}
