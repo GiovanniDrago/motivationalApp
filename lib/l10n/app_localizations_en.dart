@@ -33,7 +33,39 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dialogOk => 'Ok';
 
   @override
+  String get closeButton => 'Close';
+
+  @override
   String get retryButton => 'Retry';
+
+  @override
+  String get moreMenuTooltip => 'More';
+
+  @override
+  String get aboutMenuItem => 'About';
+
+  @override
+  String get aboutDialogTitle => 'About';
+
+  @override
+  String get aboutDialogGreeting => 'Hi.';
+
+  @override
+  String get aboutDirectMessage =>
+      'I hope you\'re enjoying the app. If it made you smile and you want to support it, you can leave a small tip.';
+
+  @override
+  String get aboutPlayMessage =>
+      'I hope you\'re enjoying the app. If you want to know more about the project, check the repository page.';
+
+  @override
+  String get aboutDonationButton => 'Buy me a coffee';
+
+  @override
+  String get aboutGithubButton => 'Open GitHub repo';
+
+  @override
+  String get externalLinkError => 'Couldn\'t open the link.';
 
   @override
   String get languageMenuLabel => 'Language';

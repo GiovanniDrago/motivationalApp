@@ -30,6 +30,11 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Set release metadata
+        run: |
+          echo "APP_VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV
+          echo "BUILD_NUMBER=${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
+
       - name: Decode keystore
         run: |
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/motivational_app.keystore
@@ -41,10 +46,19 @@ jobs:
           echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/key.properties
           echo "storeFile=motivational_app.keystore" >> android/key.properties
 
-      - name: Build release APK
-        run: flutter build apk --release
+      - name: Build direct release APK
+        run: |
+          flutter build apk --release --flavor direct --build-name "$APP_VERSION" --build-number "$BUILD_NUMBER" --dart-define=DISTRIBUTION_CHANNEL=direct --dart-define=ABOUT_URL=https://github.com/GiovanniDrago/motivationalApp --dart-define=DONATION_URL=https://buymeacoffee.com/_takasu_
+          mv build/app/outputs/flutter-apk/app-direct-release.apk build/app/outputs/flutter-apk/motivational-app-direct-v${APP_VERSION}+${BUILD_NUMBER}.apk
 
-      - name: Upload release APK
+      - name: Build play release App Bundle
+        run: |
+          flutter build appbundle --release --flavor play --build-name "$APP_VERSION" --build-number "$BUILD_NUMBER" --dart-define=DISTRIBUTION_CHANNEL=play --dart-define=ABOUT_URL=https://github.com/GiovanniDrago/motivationalApp --dart-define=DONATION_URL=
+          mv build/app/outputs/bundle/playRelease/app-play-release.aab build/app/outputs/bundle/playRelease/motivational-app-play-v${APP_VERSION}+${BUILD_NUMBER}.aab
+
+      - name: Upload release artifacts
         uses: softprops/action-gh-release@v2
         with:
-          files: build/app/outputs/flutter-apk/app-release.apk
+          files: |
+            build/app/outputs/flutter-apk/motivational-app-direct-v${{ env.APP_VERSION }}+${{ env.BUILD_NUMBER }}.apk
+            build/app/outputs/bundle/playRelease/motivational-app-play-v${{ env.APP_VERSION }}+${{ env.BUILD_NUMBER }}.aab

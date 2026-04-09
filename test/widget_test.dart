@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:motivational_app/app_distribution.dart';
 
 import 'package:motivational_app/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -51,5 +52,56 @@ void main() {
 
     expect(find.text('Dimmi il tuo nome'), findsOneWidget);
     expect(find.text('Invia'), findsOneWidget);
+  });
+
+  testWidgets('shows the donation about dialog for the direct build', (
+    tester,
+  ) async {
+    SharedPreferences.setMockInitialValues({});
+
+    await tester.pumpWidget(
+      const MotivationalApp(
+        locale: Locale('en'),
+        distribution: AppDistributionConfig(
+          channel: DistributionChannel.direct,
+          aboutUrl: 'https://github.com/GiovanniDrago/motivationalApp',
+          donationUrl: 'https://buymeacoffee.com/_takasu_',
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byIcon(Icons.more_vert_rounded));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('About'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Buy me a coffee'), findsOneWidget);
+    expect(find.text('Open GitHub repo'), findsNothing);
+  });
+
+  testWidgets('shows the repository about dialog for the play build', (
+    tester,
+  ) async {
+    SharedPreferences.setMockInitialValues({});
+
+    await tester.pumpWidget(
+      const MotivationalApp(
+        locale: Locale('en'),
+        distribution: AppDistributionConfig(
+          channel: DistributionChannel.play,
+          aboutUrl: 'https://github.com/GiovanniDrago/motivationalApp',
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byIcon(Icons.more_vert_rounded));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('About'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Open GitHub repo'), findsOneWidget);
+    expect(find.text('Buy me a coffee'), findsNothing);
   });
 }

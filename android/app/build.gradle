@@ -31,6 +31,7 @@ android {
     namespace "com.takasu.motivational_app"
     compileSdk flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
+    flavorDimensions "distribution"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -55,6 +56,17 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
+
+    productFlavors {
+        direct {
+            dimension "distribution"
+            applicationIdSuffix ".direct"
+        }
+
+        play {
+            dimension "distribution"
+        }
+    }
     
     signingConfigs {
         release {
@@ -67,8 +79,6 @@ android {
     
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.release
         }
     }

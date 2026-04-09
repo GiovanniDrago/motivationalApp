@@ -17,7 +17,11 @@ Create a release tag with:
 
 That script updates `pubspec.yaml`, commits the version bump, pushes it, creates
 an annotated tag, and pushes the tag. Pushing a `v*` tag triggers GitHub Actions
-to build the signed Android release APK and publish it to the GitHub Release.
+to build two signed Android release artifacts and publish them to the GitHub
+Release:
+
+- a direct-distribution APK with the Buy Me a Coffee About dialog
+- a Play Store AAB with the repository-based About dialog
 
 The release workflow expects these GitHub secrets:
 

@@ -146,11 +146,71 @@ abstract class AppLocalizations {
   /// **'Ok'**
   String get dialogOk;
 
+  /// No description provided for @closeButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get closeButton;
+
   /// No description provided for @retryButton.
   ///
   /// In en, this message translates to:
   /// **'Retry'**
   String get retryButton;
+
+  /// No description provided for @moreMenuTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get moreMenuTooltip;
+
+  /// No description provided for @aboutMenuItem.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get aboutMenuItem;
+
+  /// No description provided for @aboutDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get aboutDialogTitle;
+
+  /// No description provided for @aboutDialogGreeting.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi.'**
+  String get aboutDialogGreeting;
+
+  /// No description provided for @aboutDirectMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'I hope you\'re enjoying the app. If it made you smile and you want to support it, you can leave a small tip.'**
+  String get aboutDirectMessage;
+
+  /// No description provided for @aboutPlayMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'I hope you\'re enjoying the app. If you want to know more about the project, check the repository page.'**
+  String get aboutPlayMessage;
+
+  /// No description provided for @aboutDonationButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy me a coffee'**
+  String get aboutDonationButton;
+
+  /// No description provided for @aboutGithubButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Open GitHub repo'**
+  String get aboutGithubButton;
+
+  /// No description provided for @externalLinkError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t open the link.'**
+  String get externalLinkError;
 
   /// No description provided for @languageMenuLabel.
   ///

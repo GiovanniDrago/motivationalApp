@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:motivational_app/app_distribution.dart';
 import 'package:motivational_app/l10n/app_localizations.dart';
 import 'package:motivational_app/pages/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,7 +11,12 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final preferences = await SharedPreferences.getInstance();
 
-  runApp(MotivationalApp(preferences: preferences));
+  runApp(
+    MotivationalApp(
+      preferences: preferences,
+      distribution: AppDistributionConfig.fromEnvironment(),
+    ),
+  );
 }
 
 class MotivationalApp extends StatefulWidget {
@@ -18,10 +24,16 @@ class MotivationalApp extends StatefulWidget {
     super.key,
     this.locale,
     this.preferences,
+    this.distribution = const AppDistributionConfig(
+      channel: DistributionChannel.direct,
+      aboutUrl: 'https://github.com/GiovanniDrago/motivationalApp',
+      donationUrl: 'https://buymeacoffee.com/_takasu_',
+    ),
   });
 
   final Locale? locale;
   final SharedPreferences? preferences;
+  final AppDistributionConfig distribution;
 
   @override
   State<MotivationalApp> createState() => _MotivationalAppState();
@@ -106,7 +118,10 @@ class _MotivationalAppState extends State<MotivationalApp> {
         useMaterial3: true,
       ),
       themeMode: ThemeMode.dark,
-      home: Home(onLocaleSelected: _setLocale),
+      home: Home(
+        onLocaleSelected: _setLocale,
+        distribution: widget.distribution,
+      ),
     );
   }
 }
