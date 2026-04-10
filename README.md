@@ -23,6 +23,12 @@ Release:
 - a direct-distribution APK with the Buy Me a Coffee About dialog
 - a Play Store AAB with the repository-based About dialog
 
+Release versions use the format `X.Y.Z+NNNNN` in `pubspec.yaml`, where the
+build number is derived from the tag:
+
+- `v2.0.4` -> `2.0.4+20004`
+- `v2.1.0` -> `2.1.0+20100`
+
 The release workflow expects these GitHub secrets:
 
 - `KEYSTORE_BASE64`
