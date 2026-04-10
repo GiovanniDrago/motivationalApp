@@ -1,0 +1,1 @@
+A tiny joke app that gives you brutally direct motivation in one tap.

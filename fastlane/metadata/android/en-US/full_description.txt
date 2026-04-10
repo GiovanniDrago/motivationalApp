@@ -1,0 +1,19 @@
+Motivational App is a tiny ironic joke app built around one very specific idea:
+type your name, tap the button, and receive a piece of extremely direct
+motivation.
+
+It is minimal on purpose. No account. No feed. No subscriptions. No fake
+productivity promises. Just a small, fast, deliberately rude experience that is
+more interested in making you laugh than in fixing your life.
+
+Features:
+- one quick interaction with instant payoff
+- English and Italian localization
+- a lightweight About section with project links
+- clean interface and fast startup
+
+This app does not pretend to be a mindfulness coach, a life planner, or a
+wellness platform. It knows exactly how silly it is.
+
+If you enjoy dry humor, absurdly aggressive encouragement, and small apps with a
+clear joke, this one is for you.
