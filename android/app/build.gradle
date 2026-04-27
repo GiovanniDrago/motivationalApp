@@ -36,7 +36,6 @@ def hasReleaseSigning = keystorePropertiesFile.exists() &&
 android {
     namespace "com.takasu.motivational_app"
     compileSdk flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
     flavorDimensions "distribution"
 
     compileOptions {
