@@ -12,6 +12,7 @@ jobs:
       contents: write
     env:
       HAS_RELEASE_SIGNING: ${{ secrets.KEYSTORE_BASE64 != '' && secrets.KEYSTORE_PASSWORD != '' && secrets.KEY_PASSWORD != '' && secrets.KEY_ALIAS != '' }}
+      REPRO_BUILD_DIR: /home/vagrant/build/com.takasu.motivational_app.direct
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -29,9 +30,6 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Install dependencies
-        run: flutter pub get
-
       - name: Set release metadata
         run: |
           version="${GITHUB_REF_NAME#v}"
@@ -42,13 +40,25 @@ jobs:
           echo "BUILD_NUMBER=$build_number" >> $GITHUB_ENV
           echo "SOURCE_DATE_EPOCH=$source_date_epoch" >> $GITHUB_ENV
 
+      - name: Prepare reproducible workspace
+        run: |
+          sudo mkdir -p /home/vagrant/build
+          sudo chown -R "$USER":"$USER" /home/vagrant
+          rsync -a --delete --exclude .git ./ "$REPRO_BUILD_DIR/"
+
+      - name: Install dependencies
+        working-directory: ${{ env.REPRO_BUILD_DIR }}
+        run: flutter pub get
+
       - name: Decode keystore
         if: env.HAS_RELEASE_SIGNING == 'true'
+        working-directory: ${{ env.REPRO_BUILD_DIR }}
         run: |
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/motivational_app.keystore
 
       - name: Create key.properties
         if: env.HAS_RELEASE_SIGNING == 'true'
+        working-directory: ${{ env.REPRO_BUILD_DIR }}
         run: |
           echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" > android/key.properties
           echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
@@ -56,11 +66,13 @@ jobs:
           echo "storeFile=motivational_app.keystore" >> android/key.properties
 
       - name: Build direct release APK
+        working-directory: ${{ env.REPRO_BUILD_DIR }}
         run: |
           flutter build apk --release --flavor direct --build-name "$APP_VERSION" --build-number "$BUILD_NUMBER" --dart-define=DISTRIBUTION_CHANNEL=direct --dart-define=ABOUT_URL=https://github.com/GiovanniDrago/motivationalApp --dart-define=DONATION_URL=https://buymeacoffee.com/_takasu_
           mv build/app/outputs/flutter-apk/app-direct-release.apk build/app/outputs/flutter-apk/motivational-app-direct-v${APP_VERSION}+${BUILD_NUMBER}.apk
 
       - name: Build play release App Bundle
+        working-directory: ${{ env.REPRO_BUILD_DIR }}
         run: |
           flutter build appbundle --release --flavor play --build-name "$APP_VERSION" --build-number "$BUILD_NUMBER" --dart-define=DISTRIBUTION_CHANNEL=play --dart-define=ABOUT_URL=https://github.com/GiovanniDrago/motivationalApp --dart-define=DONATION_URL=
           mv build/app/outputs/bundle/playRelease/app-play-release.aab build/app/outputs/bundle/playRelease/motivational-app-play-v${APP_VERSION}+${BUILD_NUMBER}.aab
@@ -69,5 +81,5 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            build/app/outputs/flutter-apk/motivational-app-direct-v${{ env.APP_VERSION }}+${{ env.BUILD_NUMBER }}.apk
-            build/app/outputs/bundle/playRelease/motivational-app-play-v${{ env.APP_VERSION }}+${{ env.BUILD_NUMBER }}.aab
+            ${{ env.REPRO_BUILD_DIR }}/build/app/outputs/flutter-apk/motivational-app-direct-v${{ env.APP_VERSION }}+${{ env.BUILD_NUMBER }}.apk
+            ${{ env.REPRO_BUILD_DIR }}/build/app/outputs/bundle/playRelease/motivational-app-play-v${{ env.APP_VERSION }}+${{ env.BUILD_NUMBER }}.aab
