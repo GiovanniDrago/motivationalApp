@@ -37,8 +37,10 @@ jobs:
           version="${GITHUB_REF_NAME#v}"
           IFS='.' read -r major minor patch <<< "$version"
           build_number=$((10#$major * 10000 + 10#$minor * 100 + 10#$patch))
+          source_date_epoch=$(git log -1 --format=%ct "$GITHUB_SHA")
           echo "APP_VERSION=$version" >> $GITHUB_ENV
           echo "BUILD_NUMBER=$build_number" >> $GITHUB_ENV
+          echo "SOURCE_DATE_EPOCH=$source_date_epoch" >> $GITHUB_ENV
 
       - name: Decode keystore
         if: env.HAS_RELEASE_SIGNING == 'true'
