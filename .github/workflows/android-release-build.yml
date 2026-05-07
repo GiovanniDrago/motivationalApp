@@ -80,7 +80,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            ${{ env.REPRO_BUILD_DIR }}/build/app/outputs/flutter-apk/app-direct-armeabi-v7a-release.apk
-            ${{ env.REPRO_BUILD_DIR }}/build/app/outputs/flutter-apk/app-direct-arm64-v8a-release.apk
-            ${{ env.REPRO_BUILD_DIR }}/build/app/outputs/flutter-apk/app-direct-x86_64-release.apk
+            ${{ env.REPRO_BUILD_DIR }}/build/app/outputs/flutter-apk/app-armeabi-v7a-direct-release.apk
+            ${{ env.REPRO_BUILD_DIR }}/build/app/outputs/flutter-apk/app-arm64-v8a-direct-release.apk
+            ${{ env.REPRO_BUILD_DIR }}/build/app/outputs/flutter-apk/app-x86_64-direct-release.apk
             ${{ env.REPRO_BUILD_DIR }}/build/app/outputs/bundle/playRelease/motivational-app-play-v${{ env.APP_VERSION }}+${{ env.BUILD_NUMBER }}.aab
